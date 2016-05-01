@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -41,7 +42,8 @@ public class FileUploaderController {
 		bucketURI = "https://s3-ap-northeast-1.amazonaws.com/" + this.bucketName + "/";
 	}
 	
-	@RequestMapping( method = RequestMethod.PUT )
+	@CrossOrigin(origins = "*")
+	@RequestMapping( method = { RequestMethod.PUT, RequestMethod.OPTIONS} )
 	public ResponseEntity<FileMetadata> createModel(
 		HttpServletRequest request,
 		@RequestBody String data) {
